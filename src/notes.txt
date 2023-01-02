@@ -1,0 +1,7 @@
+ACTIONS
+Action types
+Action Creators
+Dispatch 
+Reducer 
+Store
+
