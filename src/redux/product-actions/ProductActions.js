@@ -1,3 +1,4 @@
+import { useDispatch } from "react-redux";
 import { ACTION_TYPE } from "../types/ActionTypes";
 
 export const addToCart = (product) =>{
@@ -12,14 +13,20 @@ export const removeFromCart = (id) =>{
 }
 
 // sync action creators
+    // Immediately return the action object with type and payload.
 // async action creators
-export const fetchProducts = async()=>{
-    const response = await fetch('https://fakestoreapi.com/products');
-    const data = await response.json();
-    // setProducts(data);
+    // Takes some amount of time to return the action object with type and payload.
 
-    return {
-        type:ACTION_TYPE.FETCH_PRODUCTS,
-        payload:data
+export const fetchProducts = ()=>{
+    return async(dispatch)=>{
+        const response = await fetch('https://fakestoreapi.com/products');
+        const data = await response.json();
+        dispatch({type:ACTION_TYPE.FETCH_PRODUCTS,payload:data})
     }
+  
+    
+    // return {
+    //     type:ACTION_TYPE.FETCH_PRODUCTS,
+    //     payload:data
+    // }
 }
